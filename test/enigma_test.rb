@@ -30,12 +30,18 @@ class EnigmaTest < Minitest::Test
     assert_equal "33iv0vty,0a", e.new_character_position(message,offset_array)
   end
 
+  def test_we_can_encrypt
+    e = Enigma.new
+    actual = e.encrypt("hello world","12345","260818")
+
+    assert_equal "33iv0vty,0a", actual
+  end
+
   def test_we_can_decrypt
     e = Enigma.new
     actual = e.decrypt("33iv0vty,0a", "12345","260818")
 
     assert_equal "hello world", actual
-
   end
 
 
