@@ -47,6 +47,9 @@ class Enigma
     position = new_character_position(message,offset_array)
   end
 
+  def decrypt(output, key, date = Date.today.strftime("%d%m%y"))
+  end
+
   def new_character_position(message,offset_array)
     final_string = ""
     for i in 0..(message.length-1) do
@@ -58,6 +61,8 @@ class Enigma
     end
     return final_string
   end
+
+
 
 
 
