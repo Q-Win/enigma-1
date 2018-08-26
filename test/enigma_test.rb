@@ -3,6 +3,8 @@ require 'minitest/pride'
 require 'date'
 require './lib/enigma'
 require './lib/offset'
+require './lib/key_generator'
+require 'pry'
 
 class EnigmaTest < Minitest::Test
 
@@ -26,6 +28,14 @@ class EnigmaTest < Minitest::Test
     offset_array = [21,24,36,49]
 
     assert_equal "33iv0vty,0a", e.new_character_position(message,offset_array)
+  end
+
+  def test_we_can_decrypt
+    e = Enigma.new
+    actual = e.decrypt("33iv0vty,0a", "12345","260818")
+
+    assert_equal "hello world", actual
+
   end
 
 
