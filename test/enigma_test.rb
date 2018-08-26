@@ -2,6 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'date'
 require './lib/enigma'
+require './lib/offset'
 
 class EnigmaTest < Minitest::Test
 
@@ -9,6 +10,14 @@ class EnigmaTest < Minitest::Test
     e = Enigma.new
 
     assert_instance_of Enigma, e
+  end
+
+  def test_we_get_new_character_position
+    e = Enigma.new
+    message = "cats"
+    offset_array = [21,24,36,49]
+
+    assert_equal "xyq3", e.new_character_position(message,offset_array)
   end
 
 
