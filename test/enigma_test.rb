@@ -20,6 +20,14 @@ class EnigmaTest < Minitest::Test
     assert_equal "xyq3", e.new_character_position(message,offset_array)
   end
 
+  def test_we_get_new_character_position_2
+    e = Enigma.new
+    message = "hello world"
+    offset_array = [21,24,36,49]
+
+    assert_equal "33iv0vty,0a", e.new_character_position(message,offset_array)
+  end
+
 
 
 end
