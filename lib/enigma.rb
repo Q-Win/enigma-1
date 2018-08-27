@@ -67,7 +67,7 @@ class Enigma
   def new_decrypted_position(output,offset_array)
     final_string = ""
     for i in 0..(output.length-1) do
-      new_character_position = @character_map[output[i]] - offset_array[(4+i)%4]
+      new_character_position = calc_key_decrypt(i,output,offset_array)
       while (new_character_position <= 0)
         new_character_position += 39
       end
@@ -86,6 +86,10 @@ class Enigma
       final_string += @character_map.key(new_character_position)
     end
     return final_string
+  end
+
+  def calc_key_decrypt(i, string, offset_array)
+    @character_map[string[i]] - offset_array[(4+i)%4]
   end
 
 
