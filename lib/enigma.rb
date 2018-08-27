@@ -55,15 +55,6 @@ class Enigma
     # decryption = new_character_position(output,decrypted_offset_array)
   end
 
-  # def decrypt_offset_array(output,offset_array)
-  #   length = @character_map.length
-  #   decrypted_offset_array = []
-  #   offset_array.each do |num|
-  #     decrypted_offset_array << @character_map[output[decrypted_offset_array.length]] - num%length
-  #   end
-  #   binding.pry
-  #   return decrypted_offset_array
-  # end
   def new_decrypted_position(output,offset_array)
     final_string = ""
     for i in 0..(output.length-1) do
