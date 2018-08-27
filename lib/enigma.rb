@@ -42,7 +42,8 @@ class Enigma
                      "." => 38,
                      "," => 39}
   end
-  def encrypt(message, key = KeyGenerator.new.random_key, date = Date.today.strftime("%d%m%y"))
+  def encrypt(message, key = KeyGenerator.new.random_key,
+              date = Date.today.strftime("%d%m%y"))
     offset_array = Offset.new(key,date).build_offset_array
     position = new_character_position(message,offset_array)
   end
@@ -54,19 +55,10 @@ class Enigma
     # decryption = new_character_position(output,decrypted_offset_array)
   end
 
-  # def decrypt_offset_array(output,offset_array)
-  #   length = @character_map.length
-  #   decrypted_offset_array = []
-  #   offset_array.each do |num|
-  #     decrypted_offset_array << @character_map[output[decrypted_offset_array.length]] - num%length
-  #   end
-  #   binding.pry
-  #   return decrypted_offset_array
-  # end
   def new_decrypted_position(output,offset_array)
     final_string = ""
     for i in 0..(output.length-1) do
-      new_character_position = @character_map[output[i]] - offset_array[(4+i)%4]
+      new_character_position = calc_key_decrypt(i,output,offset_array)
       while (new_character_position <= 0)
         new_character_position += 39
       end
@@ -78,13 +70,21 @@ class Enigma
   def new_character_position(message,offset_array)
     final_string = ""
     for i in 0..(message.length-1) do
-      new_character_position = @character_map[message[i]] + offset_array[(4+i)%4]
+      new_character_position = calc_key_encrypt(i,message,offset_array)
       while (new_character_position >= 40)
         new_character_position -= 39
       end
       final_string += @character_map.key(new_character_position)
     end
     return final_string
+  end
+
+  def calc_key_decrypt(i, string, offset_array)
+    @character_map[string[i]] - offset_array[(4+i)%4]
+  end
+
+  def calc_key_encrypt(i,string,offset_array)
+    @character_map[string[i]] + offset_array[(4+i)%4]
   end
 
 

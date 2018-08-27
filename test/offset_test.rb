@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'minitest/pride'
 require 'date'
 require './lib/offset'
-require './lib/key_generator'
+
 
 class OffsetTest < Minitest::Test
 
@@ -19,9 +19,9 @@ class OffsetTest < Minitest::Test
   end
 
   def test_it_can_take_last_four
-      o = Offset.new("12345","260818")
+    o = Offset.new("12345","260818")
 
-      assert_equal 9124, o.last_four_of_date
+    assert_equal 9124, o.last_four_of_date
   end
 
   def test_it_can_build_array_key

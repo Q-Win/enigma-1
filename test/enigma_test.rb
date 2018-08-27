@@ -45,6 +45,20 @@ class EnigmaTest < Minitest::Test
     assert_equal "hello world", actual
   end
 
+  def test_calc_key_encrypt
+    e = Enigma.new
 
+    actual = e.calc_key_encrypt(0,"hello",[21,24,36,49])
+
+    assert_equal 29, actual
+  end
+
+  def test_calc_key_decrytp
+    e = Enigma.new
+
+    actual = e.calc_key_decrypt(0,"3",[21,24,36,49])
+
+    assert_equal 8, actual
+  end
 
 end
