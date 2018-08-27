@@ -79,7 +79,7 @@ class Enigma
   def new_character_position(message,offset_array)
     final_string = ""
     for i in 0..(message.length-1) do
-      new_character_position = @character_map[message[i]] + offset_array[(4+i)%4]
+      new_character_position = calc_key_encrypt(i,message,offset_array)
       while (new_character_position >= 40)
         new_character_position -= 39
       end
@@ -90,6 +90,10 @@ class Enigma
 
   def calc_key_decrypt(i, string, offset_array)
     @character_map[string[i]] - offset_array[(4+i)%4]
+  end
+
+  def calc_key_encrypt(i,string,offset_array)
+    @character_map[string[i]] + offset_array[(4+i)%4]
   end
 
 
