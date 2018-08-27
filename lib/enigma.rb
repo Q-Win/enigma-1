@@ -42,7 +42,8 @@ class Enigma
                      "." => 38,
                      "," => 39}
   end
-  def encrypt(message, key = KeyGenerator.new.random_key, date = Date.today.strftime("%d%m%y"))
+  def encrypt(message, key = KeyGenerator.new.random_key,
+              date = Date.today.strftime("%d%m%y"))
     offset_array = Offset.new(key,date).build_offset_array
     position = new_character_position(message,offset_array)
   end
