@@ -78,11 +78,11 @@ class Enigma
   end
 
   def calc_key_decrypt(i, string, offset_array)
-    @character_map[string[i]] - offset_array[(4+i)%4]
+    @character_map[string[i]] - offset_array[i%4]
   end
 
   def calc_key_encrypt(i,string,offset_array)
-    @character_map[string[i]] + offset_array[(4+i)%4]
+    @character_map[string[i]] + offset_array[i%4]
   end
 
   def crack(encrypted,date = Date.today.strftime("%d%m%y").to_i)

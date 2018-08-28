@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-08-28T13:04:53-06:00">2018-08-28T13:04:53-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-08-28T13:08:08-06:00">2018-08-28T13:08:08-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -53,7 +53,7 @@
       <tr>
         <td class="strong"><a href="#90040a5ad7e6185906fca54355793ef4355b3835" class="src_link" title="lib/enigma.rb">lib/enigma.rb</a></td>
         <td class="green strong">100.0 %</td>
-        <td>116</td>
+        <td>112</td>
         <td>45</td>
         <td>45</td>
         <td>0</td>
@@ -593,7 +593,7 @@
         <li class="covered" data-hits="19" data-linenumber="81">
           <span class="hits">19</span>
           
-          <code class="ruby">    @character_map[string[i]] - offset_array[(4+i)%4]</code>
+          <code class="ruby">    @character_map[string[i]] - offset_array[i%4]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="82">
@@ -617,7 +617,7 @@
         <li class="covered" data-hits="27" data-linenumber="85">
           <span class="hits">27</span>
           
-          <code class="ruby">    @character_map[string[i]] + offset_array[(4+i)%4]</code>
+          <code class="ruby">    @character_map[string[i]] + offset_array[i%4]</code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="86">
@@ -767,40 +767,16 @@
         <li class="never" data-hits="" data-linenumber="110">
           
           
-          <code class="ruby">  # </code>
+          <code class="ruby"></code>
         </li>
       
         <li class="never" data-hits="" data-linenumber="111">
           
           
-          <code class="ruby">  # def crack_key(message, date = Date.today.strftime(&quot;%d%m%y&quot;).to_i)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="112">
-          
-          
-          <code class="ruby">  #   last_four = crack</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="113">
-          
-          
-          <code class="ruby">  #   rotation_array = crack_rotation_array(i,last_four_encrypted,date)</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="114">
-          
-          
-          <code class="ruby">  # end</code>
-        </li>
-      
-        <li class="never" data-hits="" data-linenumber="115">
-          
-          
           <code class="ruby"></code>
         </li>
       
-        <li class="never" data-hits="" data-linenumber="116">
+        <li class="never" data-hits="" data-linenumber="112">
           
           
           <code class="ruby">end</code>
