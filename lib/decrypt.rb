@@ -11,6 +11,7 @@ decrypted_file = documents[1]
 key = documents[2]
 date = documents[3]
 
+
 encrypt = File.new(encrypted_file,'r').read.strip
 output = Enigma.new.decrypt(encrypt,key,date)
 

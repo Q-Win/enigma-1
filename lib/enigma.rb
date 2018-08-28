@@ -107,21 +107,4 @@ class Enigma
     return rotation_array.reverse
   end
 
-
-  # def crack_new_character_position(encrypted,rotation_array)
-    # reverse_encrypted = encrypted.reverse
-    # final_string = ""
-    # for i in 0..(encrypted.length-1) do
-    #   new_character_position = calc_key_decrypt(i,reverse_encrypted,rotation_array)
-    #   binding.pry
-    #   while (new_character_position >= 40)
-    #     new_character_position -= 39
-    #   end
-    #   final_string << @character_map.key(new_character_position)
-    # end
-    # return final_string
-
-
-
-
 end
