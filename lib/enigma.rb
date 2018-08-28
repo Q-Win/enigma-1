@@ -92,6 +92,7 @@ class Enigma
     new_character_position.reverse
   end
 
+
   def crack_last_four(encrypted)
     split = encrypted.split("")
     last_four = split[-4..-1]
@@ -106,5 +107,6 @@ class Enigma
     end
     return rotation_array.reverse
   end
+
 
 end
