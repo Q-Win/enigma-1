@@ -1,7 +1,10 @@
+require 'simplecov'
+SimpleCov.start
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'date'
 require './lib/key_generator'
+
 
 
 class KeyGeneratorTest < Minitest::Test
@@ -23,5 +26,5 @@ class KeyGeneratorTest < Minitest::Test
 
       assert (1..99999).include?(k)
   end
-  
+
 end
