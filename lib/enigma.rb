@@ -1,4 +1,4 @@
-
+require 'pry'
 class Enigma
 
   def initialize
@@ -45,14 +45,12 @@ class Enigma
   def encrypt(message, key = KeyGenerator.new.random_key,
               date = Date.today.strftime("%d%m%y"))
     offset_array = Offset.new(key,date).build_offset_array
-    position = new_character_position(message,offset_array)
+    encrypted = new_character_position(message,offset_array)
   end
 
   def decrypt(output, key, date = Date.today.strftime("%d%m%y"))
     offset_array = Offset.new(key,date).build_offset_array
     decryption = new_decrypted_position(output,offset_array)
-    # decrypted_offset_array = decrypt_offset_array(output,offset_array)
-    # decryption = new_character_position(output,decrypted_offset_array)
   end
 
   def new_decrypted_position(output,offset_array)
@@ -86,6 +84,43 @@ class Enigma
   def calc_key_encrypt(i,string,offset_array)
     @character_map[string[i]] + offset_array[(4+i)%4]
   end
+
+  def crack(encrypted,date = Date.today.strftime("%d%m%y").to_i)
+    last_four_encrypted = crack_last_four(encrypted)
+    rotation_array = crack_rotation_array(0,last_four_encrypted,date)
+    new_character_position = new_decrypted_position(encrypted.reverse,rotation_array)
+    new_character_position.reverse
+  end
+
+  def crack_last_four(encrypted)
+    split = encrypted.split("")
+    last_four = split[-4..-1]
+  end
+
+  def crack_rotation_array(i,last_four_encrypted,date)
+    expected_end = ["n","d",".","."]
+    rotation_array = []
+    while i < 4
+      rotation_array << @character_map[last_four_encrypted[i]] +  @character_map.length - @character_map[expected_end[i]]
+      i += 1
+    end
+    return rotation_array.reverse
+  end
+
+
+  # def crack_new_character_position(encrypted,rotation_array)
+    # reverse_encrypted = encrypted.reverse
+    # final_string = ""
+    # for i in 0..(encrypted.length-1) do
+    #   new_character_position = calc_key_decrypt(i,reverse_encrypted,rotation_array)
+    #   binding.pry
+    #   while (new_character_position >= 40)
+    #     new_character_position -= 39
+    #   end
+    #   final_string << @character_map.key(new_character_position)
+    # end
+    # return final_string
+
 
 
 
