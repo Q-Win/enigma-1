@@ -14,8 +14,8 @@ date = documents[2]
 
 
 encrypted = File.new(encrypted_file,'r').read.strip
-crack = Enigma.new.crack(encrypted,260818)
-
+crack = Enigma.new.crack(encrypted,280818)
+key = crack.find_key(encrypted)
 cracked= File.new(cracked_file,'a').write(crack)
 
 puts "Created '#{cracked_file}' with the key #{key} and date #{date}."

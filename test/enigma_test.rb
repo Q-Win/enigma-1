@@ -76,7 +76,7 @@ class EnigmaTest < Minitest::Test
     encrypted_four = ["k","n","t","w"]
     date = 260818
 
-    assert_equal [24,21,49,36], e.crack_rotation_array(0,encrypted_four,date)
+    assert_equal [36,49,21,24], e.crack_rotation_array(0,encrypted_four,date)
   end
 
   def test_it_can_create_decrypted_crack
@@ -90,6 +90,31 @@ class EnigmaTest < Minitest::Test
     assert_equal "quinn..end..", e.crack(encrypted_2, 280818)
     assert_equal "meg..end..", e.crack(encrypted_3, 280818)
     assert_equal "hi..end..",e.crack(encrypted_4, 280818)
+  end
+
+  def test_crack_can_find_original_array_by_rotating
+    e = Enigma.new
+    encrypted_1 = "it3kntw"
+    encrypted_2 = "g1iode.fdj.,"
+    encrypted_3 = "lx9u xcz r"
+    encrypted_4 = "e.,8bde89"
+
+    assert_equal [21,49,36,24],e.crack_find_original_rotation_array(encrypted_1, [24,21,49,36])
+    assert_equal [24,21,49,36],e.crack_find_original_rotation_array(encrypted_2, [24,21,49,36])
+    assert_equal [49,36,24,21],e.crack_find_original_rotation_array(encrypted_3, [24,21,49,36])
+    assert_equal [36,24,21,49],e.crack_find_original_rotation_array(encrypted_4, [24,21,49,36])
+  end
+
+  def test_crack_key
+    e = Enigma.new
+
+    assert_equal "12345",e.crack_key([21,24,36,49],280818)
+  end
+
+  def test_it_can_calculate_key_find_key
+    e = Enigma.new
+
+    assert_equal "12345",e.find_key("3,moseesavty,9pit3kntw",280818)
   end
 
 end

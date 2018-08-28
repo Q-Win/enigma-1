@@ -1,6 +1,7 @@
 require 'pry'
 class Enigma
 
+
   def initialize
     @character_map = {"a" => 1,
                      "b" => 2,
@@ -69,6 +70,7 @@ class Enigma
     final_string = ""
     for i in 0..(message.length-1) do
       new_character_position = calc_key_encrypt(i,message,offset_array)
+      # new_character_position = new_character_position % 39
       while (new_character_position >= 40)
         new_character_position -= 39
       end
@@ -108,11 +110,31 @@ class Enigma
     return rotation_array
   end
 
-  def crack_find_original_rotation_array(encrypted)
-    mod = .length
+  def crack_find_original_rotation_array(encrypted, crack_offset_array)
+    mod = encrypted.length % 4
+    crack_offset_array.rotate(-mod)
   end
 
-  def crack_key
-  end 
+  def find_key(encrypted, date = Date.today.strftime("%d%m%y").to_i)
+    last_four = crack_last_four(encrypted)
+    last_four_rotation = crack_rotation_array(0,last_four,date)
+    first_four_offset = crack_find_original_rotation_array(encrypted, last_four_rotation)
+    key = crack_key(first_four_offset,date)
+  end
+
+  def crack_key(first_four_offset,date)
+    date_array = Offset.new("0",date).build_date_array
+    i = -1
+    key = first_four_offset.map do |num|
+            i += 1
+            num - date_array[i]
+          end
+    k = key.join.to_s
+    cracked_key = k[0]+k[2]+k[4]+k[6]+k[7]
+  end
+
+
+
+
 
 end
