@@ -129,7 +129,8 @@ class Enigma
             i += 1
             num - date_array[i]
           end
-    k = key.join.to_s
+    binding.pry
+    k = key.join
     cracked_key = k[0]+k[2]+k[4]+k[6]+k[7]
   end
 
