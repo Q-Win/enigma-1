@@ -14,7 +14,7 @@
       <img src="./assets/0.10.2/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" style="display:none;">
-      <div class="timestamp">Generated <abbr class="timeago" title="2018-08-28T13:08:53-06:00">2018-08-28T13:08:53-06:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2018-08-28T13:31:27-06:00">2018-08-28T13:31:27-06:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -25,7 +25,7 @@
      covered at
      <span class="covered_strength">
        <span class="green">
-         6.02
+         9.68
        </span>
     </span> hits/line)
   </h2>
@@ -57,7 +57,7 @@
         <td>45</td>
         <td>45</td>
         <td>0</td>
-        <td>7.8</td>
+        <td>13.9</td>
       </tr>
       
       <tr>
@@ -446,32 +446,32 @@
           <code class="ruby">  def new_decrypted_position(output,offset_array)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="57">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="57">
+          <span class="hits">5</span>
           
           <code class="ruby">    final_string = &quot;&quot;</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="58">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="58">
+          <span class="hits">5</span>
           
           <code class="ruby">    for i in 0..(output.length-1) do</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="59">
-          <span class="hits">18</span>
+        <li class="covered" data-hits="49" data-linenumber="59">
+          <span class="hits">49</span>
           
           <code class="ruby">      new_character_position = calc_key_decrypt(i,output,offset_array)</code>
         </li>
       
-        <li class="covered" data-hits="49" data-linenumber="60">
-          <span class="hits">49</span>
+        <li class="covered" data-hits="140" data-linenumber="60">
+          <span class="hits">140</span>
           
           <code class="ruby">      while (new_character_position &lt;= 0)</code>
         </li>
       
-        <li class="covered" data-hits="13" data-linenumber="61">
-          <span class="hits">13</span>
+        <li class="covered" data-hits="42" data-linenumber="61">
+          <span class="hits">42</span>
           
           <code class="ruby">        new_character_position += 39</code>
         </li>
@@ -482,8 +482,8 @@
           <code class="ruby">      end</code>
         </li>
       
-        <li class="covered" data-hits="18" data-linenumber="63">
-          <span class="hits">18</span>
+        <li class="covered" data-hits="49" data-linenumber="63">
+          <span class="hits">49</span>
           
           <code class="ruby">      final_string += @character_map.key(new_character_position)</code>
         </li>
@@ -494,8 +494,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="65">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="65">
+          <span class="hits">5</span>
           
           <code class="ruby">    return final_string</code>
         </li>
@@ -590,8 +590,8 @@
           <code class="ruby">  def calc_key_decrypt(i, string, offset_array)</code>
         </li>
       
-        <li class="covered" data-hits="19" data-linenumber="81">
-          <span class="hits">19</span>
+        <li class="covered" data-hits="50" data-linenumber="81">
+          <span class="hits">50</span>
           
           <code class="ruby">    @character_map[string[i]] - offset_array[i%4]</code>
         </li>
@@ -638,26 +638,26 @@
           <code class="ruby">  def crack(encrypted,date = Date.today.strftime(&quot;%d%m%y&quot;).to_i)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="89">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="89">
+          <span class="hits">4</span>
           
           <code class="ruby">    last_four_encrypted = crack_last_four(encrypted)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="90">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="90">
+          <span class="hits">4</span>
           
           <code class="ruby">    rotation_array = crack_rotation_array(0,last_four_encrypted,date)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="91">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="91">
+          <span class="hits">4</span>
           
           <code class="ruby">    new_character_position = new_decrypted_position(encrypted.reverse,rotation_array)</code>
         </li>
       
-        <li class="covered" data-hits="1" data-linenumber="92">
-          <span class="hits">1</span>
+        <li class="covered" data-hits="4" data-linenumber="92">
+          <span class="hits">4</span>
           
           <code class="ruby">    new_character_position.reverse</code>
         </li>
@@ -686,14 +686,14 @@
           <code class="ruby">  def crack_last_four(encrypted)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="97">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="97">
+          <span class="hits">5</span>
           
           <code class="ruby">    split = encrypted.split(&quot;&quot;)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="98">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="98">
+          <span class="hits">5</span>
           
           <code class="ruby">    last_four = split[-4..-1]</code>
         </li>
@@ -716,32 +716,32 @@
           <code class="ruby">  def crack_rotation_array(i,last_four_encrypted,date)</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="102">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="102">
+          <span class="hits">5</span>
           
           <code class="ruby">    expected_end = [&quot;n&quot;,&quot;d&quot;,&quot;.&quot;,&quot;.&quot;]</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="103">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="103">
+          <span class="hits">5</span>
           
           <code class="ruby">    rotation_array = []</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="104">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="104">
+          <span class="hits">5</span>
           
           <code class="ruby">    while i &lt; 4</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="105">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="20" data-linenumber="105">
+          <span class="hits">20</span>
           
           <code class="ruby">      rotation_array &lt;&lt; @character_map[last_four_encrypted[i]] +  @character_map.length - @character_map[expected_end[i]]</code>
         </li>
       
-        <li class="covered" data-hits="8" data-linenumber="106">
-          <span class="hits">8</span>
+        <li class="covered" data-hits="20" data-linenumber="106">
+          <span class="hits">20</span>
           
           <code class="ruby">      i += 1</code>
         </li>
@@ -752,8 +752,8 @@
           <code class="ruby">    end</code>
         </li>
       
-        <li class="covered" data-hits="2" data-linenumber="108">
-          <span class="hits">2</span>
+        <li class="covered" data-hits="5" data-linenumber="108">
+          <span class="hits">5</span>
           
           <code class="ruby">    return rotation_array.reverse</code>
         </li>

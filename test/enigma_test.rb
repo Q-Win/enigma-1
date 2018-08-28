@@ -81,10 +81,15 @@ class EnigmaTest < Minitest::Test
 
   def test_it_can_create_decrypted_crack
     e = Enigma.new
-    encrypted = "it3kntw"
-    # rotation_array = [24,21,49,36]
+    encrypted_1 = "it3kntw"
+    encrypted_2 = "g1iode.fdj.,"
+    encrypted_3 = "lx9u xcz r"
+    encrypted_4 = "e.,8bde89"
 
-    assert_equal "..end..", e.crack(encrypted, 260818)
-
+    assert_equal "..end..", e.crack(encrypted_1, 260818)
+    assert_equal "quinn..end..", e.crack(encrypted_2, 280818)
+    assert_equal "meg..end..", e.crack(encrypted_3, 280818)
+    assert_equal "hi..end..",e.crack(encrypted_4, 280818)
   end
+
 end

@@ -88,7 +88,7 @@ class Enigma
   def crack(encrypted,date = Date.today.strftime("%d%m%y").to_i)
     last_four_encrypted = crack_last_four(encrypted)
     rotation_array = crack_rotation_array(0,last_four_encrypted,date)
-    new_character_position = new_decrypted_position(encrypted.reverse,rotation_array)
+    new_character_position = new_decrypted_position(encrypted.reverse,rotation_array.reverse)
     new_character_position.reverse
   end
 
@@ -105,8 +105,14 @@ class Enigma
       rotation_array << @character_map[last_four_encrypted[i]] +  @character_map.length - @character_map[expected_end[i]]
       i += 1
     end
-    return rotation_array.reverse
+    return rotation_array
   end
 
+  def crack_find_original_rotation_array(encrypted)
+    mod = .length
+  end
+
+  def crack_key
+  end 
 
 end
