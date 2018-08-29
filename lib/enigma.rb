@@ -1,5 +1,3 @@
-require 'pry'
-
 class Enigma
 
 
@@ -44,6 +42,7 @@ class Enigma
                      "." => 38,
                      "," => 39}
   end
+
   def encrypt(message, key = KeyGenerator.new.random_key,
               date = Date.today.strftime("%d%m%y"))
     offset_array = Offset.new(key,date).build_offset_array
@@ -93,7 +92,6 @@ class Enigma
     new_character_position = decrypt_return(encrypted.reverse,rotation_array.reverse)
     new_character_position.reverse
   end
-
 
   def crack_last_four(encrypted)
     split = encrypted.split("")

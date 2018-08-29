@@ -111,7 +111,6 @@ class EnigmaTest < Minitest::Test
     assert_equal "00275", e.crack_key(offset_value_3,280818)
   end
 
-
   def test_it_can_calculate_key_find_key
     e = Enigma.new
 
