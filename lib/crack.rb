@@ -12,7 +12,6 @@ cracked_file = documents[1]
 date = documents[2]
 
 
-
 encrypted = File.new(encrypted_file,'r').read.strip
 e = Enigma.new
 output = e.crack(encrypted,date)

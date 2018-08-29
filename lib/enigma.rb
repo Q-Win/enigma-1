@@ -1,7 +1,5 @@
 require 'pry'
-
 class Enigma
-
 
   def initialize
     @character_map = {"a" => 1,
@@ -44,57 +42,56 @@ class Enigma
                      "." => 38,
                      "," => 39}
   end
+
   def encrypt(message, key = KeyGenerator.new.random_key,
               date = Date.today.strftime("%d%m%y"))
     offset_array = Offset.new(key,date).build_offset_array
-    encrypted = new_character_position(message,offset_array)
+    encrypted = encrypt_return(message,offset_array)
   end
 
   def decrypt(output, key, date = Date.today.strftime("%d%m%y"))
     offset_array = Offset.new(key,date).build_offset_array
-    decryption = new_decrypted_position(output,offset_array)
-  end
-
-  def new_decrypted_position(output,offset_array)
-    final_string = ""
-    for i in 0..(output.length-1) do
-      new_character_position = calc_key_decrypt(i,output,offset_array)
-      while (new_character_position <= 0)
-        new_character_position += 39
-      end
-      final_string += @character_map.key(new_character_position)
-    end
-    return final_string
-  end
-
-  def new_character_position(message,offset_array)
-    final_string = ""
-    for i in 0..(message.length-1) do
-      new_character_position = calc_key_encrypt(i,message,offset_array)
-      # new_character_position = new_character_position % 39
-      while (new_character_position >= 40)
-        new_character_position -= 39
-      end
-      final_string += @character_map.key(new_character_position)
-    end
-    return final_string
-  end
-
-  def calc_key_decrypt(i, string, offset_array)
-    @character_map[string[i]] - offset_array[i%4]
-  end
-
-  def calc_key_encrypt(i,string,offset_array)
-    @character_map[string[i]] + offset_array[i%4]
+    decryption = decrypt_return(output,offset_array)
   end
 
   def crack(encrypted,date = Date.today.strftime("%d%m%y").to_i)
     last_four_encrypted = crack_last_four(encrypted)
     rotation_array = crack_rotation_array(0,last_four_encrypted,date)
-    new_character_position = new_decrypted_position(encrypted.reverse,rotation_array.reverse)
+    new_character_position = decrypt_return(encrypted.reverse,rotation_array.reverse)
     new_character_position.reverse
   end
 
+  def encrypt_return(message,offset_array)
+    final_string = ""
+    for i in 0..(message.length-1) do
+      new_character_position = encrypt_character(i,message,offset_array)
+      while (new_character_position >= 40)
+        new_character_position -= 39
+      end
+      final_string += @character_map.key(new_character_position)
+    end
+    final_string
+  end
+
+  def encrypt_character(i,string,offset_array)
+    @character_map[string[i]] + offset_array[i%4]
+  end
+
+  def decrypt_return(output,offset_array)
+    final_string = ""
+    for i in 0..(output.length-1) do
+      new_character_position = decrypt_character(i,output,offset_array)
+      while (new_character_position <= 0)
+        new_character_position += 39
+      end
+      final_string += @character_map.key(new_character_position)
+    end
+    final_string
+  end
+
+  def decrypt_character(i, string, offset_array)
+    @character_map[string[i]] - offset_array[i%4]
+  end
 
   def crack_last_four(encrypted)
     split = encrypted.split("")
@@ -105,10 +102,11 @@ class Enigma
     expected_end = ["n","d",".","."]
     rotation_array = []
     while i < 4
-      rotation_array << @character_map[last_four_encrypted[i]] +  @character_map.length - @character_map[expected_end[i]]
+      rotation_array << @character_map[last_four_encrypted[i]] +
+      @character_map.length - @character_map[expected_end[i]]
       i += 1
     end
-    return rotation_array
+    rotation_array
   end
 
   def crack_find_original_rotation_array(encrypted, crack_offset_array)
@@ -119,7 +117,7 @@ class Enigma
   def find_key(encrypted, date = Date.today.strftime("%d%m%y").to_i)
     last_four = crack_last_four(encrypted)
     last_four_rotation = crack_rotation_array(0,last_four,date)
-    first_four_offset = crack_find_original_rotation_array(encrypted, last_four_rotation)
+    first_four_offset = crack_find_original_rotation_array(encrypted,last_four_rotation)
     key = crack_key(first_four_offset,date)
   end
 
@@ -136,9 +134,5 @@ class Enigma
     k = key.join
     cracked_key = k[0]+k[2]+k[4]+k[6]+k[7]
   end
-
-
-
-
 
 end

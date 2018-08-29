@@ -16,20 +16,20 @@ class EnigmaTest < Minitest::Test
     assert_instance_of Enigma, e
   end
 
-  def test_we_get_new_character_position
+  def test_we_get_encrypt_return
     e = Enigma.new
     message = "cats"
     offset_array = [21,24,36,49]
 
-    assert_equal "xyq3", e.new_character_position(message,offset_array)
+    assert_equal "xyq3", e.encrypt_return(message,offset_array)
   end
 
-  def test_we_get_new_character_position_2
+  def test_we_get_encrypt_return_2
     e = Enigma.new
     message = "hello world"
     offset_array = [21,24,36,49]
 
-    assert_equal "33iv0vty,0a", e.new_character_position(message,offset_array)
+    assert_equal "33iv0vty,0a", e.encrypt_return(message,offset_array)
   end
 
   def test_we_can_encrypt
@@ -46,17 +46,17 @@ class EnigmaTest < Minitest::Test
     assert_equal "hello world", actual
   end
 
-  def test_calc_key_encrypt
+  def test_encrypt_character
     e = Enigma.new
 
-    actual = e.calc_key_encrypt(0,"hello",[21,24,36,49])
+    actual = e.encrypt_character(0,"hello",[21,24,36,49])
 
     assert_equal 29, actual
   end
 
-  def test_calc_key_decrytp
+  def test_decrypt_character
     e = Enigma.new
-    actual = e.calc_key_decrypt(0,"3",[21,24,36,49])
+    actual = e.decrypt_character(0,"3",[21,24,36,49])
 
     assert_equal 8, actual
   end
@@ -105,13 +105,11 @@ class EnigmaTest < Minitest::Test
   def test_crack_key
     e = Enigma.new
     offset_value_1 = [21,24,36,49]
-    offset_value_2 = [50,13,31,99]
     offset_value_3 = [9,3,29,79]
 
     assert_equal "12345", e.crack_key(offset_value_1,280818)
     assert_equal "00275", e.crack_key(offset_value_3,280818)
   end
-
 
   def test_it_can_calculate_key_find_key
     e = Enigma.new
