@@ -1,6 +1,5 @@
 class Enigma
 
-
   def initialize
     @character_map = {"a" => 1,
                      "b" => 2,
