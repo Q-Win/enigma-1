@@ -8,9 +8,6 @@ require './lib/offset'
 require './lib/key_generator'
 
 
-
-
-
 class EnigmaTest < Minitest::Test
 
   def test_it_exists
