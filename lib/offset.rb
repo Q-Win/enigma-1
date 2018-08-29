@@ -41,5 +41,4 @@ class Offset
     return offset_array
   end
 
-
 end
