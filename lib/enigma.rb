@@ -1,4 +1,5 @@
 require 'pry'
+
 class Enigma
 
 
@@ -124,12 +125,14 @@ class Enigma
 
   def crack_key(first_four_offset,date)
     date_array = Offset.new("0",date).build_date_array
-    i = -1
-    key = first_four_offset.map do |num|
+    i = 0
+    key = []
+    first_four_offset.each do |num|
+            new_num = num - date_array[i]
+            two_digits = "%02d" % new_num
             i += 1
-            num - date_array[i]
+            key << two_digits
           end
-    binding.pry
     k = key.join
     cracked_key = k[0]+k[2]+k[4]+k[6]+k[7]
   end

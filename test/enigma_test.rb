@@ -107,9 +107,14 @@ class EnigmaTest < Minitest::Test
 
   def test_crack_key
     e = Enigma.new
+    offset_value_1 = [21,24,36,49]
+    offset_value_2 = [50,13,31,99]
+    offset_value_3 = [9,3,29,79]
 
-    assert_equal "12345",e.crack_key([21,24,36,49],280818)
+    assert_equal "12345", e.crack_key(offset_value_1,280818)
+    assert_equal "00275", e.crack_key(offset_value_3,280818)
   end
+
 
   def test_it_can_calculate_key_find_key
     e = Enigma.new
